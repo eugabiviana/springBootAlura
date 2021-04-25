@@ -63,7 +63,7 @@ public class TopicosController {
 	public ResponseEntity<TopicoDto> cadastrar(@RequestBody @Valid TopicoForm form, UriComponentsBuilder uriBuilder) { //essa annotation é para buscar a informação na página (no caso, no que o usuário está digitando) e não na url (no parametro de busca /topicos?blabla)
 		Topico topico = form.converter(cursoRepository);
 		topicoRepository.save(topico);
-		
+				
 		//cria o endereço URL de acordo com o topico criado:
 		URI uri = uriBuilder.path("/topico/{id}").buildAndExpand(topico.getId()).toUri();
 		return ResponseEntity.created(uri).body(new TopicoDto(topico)); 
